@@ -152,6 +152,337 @@ plotAvgCov_oneWTmutantVanotherWTmutant <- function(xplot,
          ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
 }
 
+# Function to plot mean coverage profile of wt vs mutant chromatin mark on same Y-axes around target and random loci
+plotAvgCov_WTvMutant <- function(xplot,
+                                 dat1,
+                                 mutantDat1,
+                                 ranDat1,
+                                 mutantRanDat1,
+                                 flankSize, winSize,
+                                 Ylabel1,
+                                 flankLabL, flankLabR,
+                                 startLab1, endLab1,
+                                 startLab2, endLab2,
+                                 legendLoc, legendLabs,
+                                 wtCol, mutantCol) {
+  # target loci
+  plot(xplot, dat1,
+       ylim = c(min(dat1, ranDat1, mutantDat1, mutantRanDat1),
+                max(dat1, ranDat1, mutantDat1, mutantRanDat1)),
+       type = "l", lwd = 1.5, col = wtCol, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, mutantDat1, type = "l", lwd = 1.5, col = mutantCol)
+  axis(side = 2, at = pretty(c(dat1, ranDat1, mutantDat1, mutantRanDat1)))
+  mtext(side = 2, line = 2, cex = 0.8, text = Ylabel1, col = wtCol)
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(dat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(wtCol, mutantCol),
+         text.col = c(wtCol, mutantCol),
+         text.font = c(1, 3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+
+  # random loci
+  plot(xplot, ranDat1,
+       ylim = c(min(dat1, ranDat1, mutantDat1, mutantRanDat1),
+                max(dat1, ranDat1, mutantDat1, mutantRanDat1)),
+       type = "l", lwd = 1.5, col = wtCol, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, mutantRanDat1, type = "l", lwd = 1.5, col = mutantCol)
+  axis(side = 2, at = pretty(c(dat1, ranDat1, mutantDat1, mutantRanDat1)))
+  mtext(side = 2, line = 2, cex = 0.8, text = Ylabel1, col = wtCol)
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(wtCol, mutantCol),
+         text.col = c(wtCol, mutantCol),
+         text.font = c(1, 3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+}
+
+# Function to plot mean coverage profile of wt vs mutant chromatin mark for DNA and RNA TEs on same Y-axes around target and random loci
+plotAvgCov_WTvMutant_DNA_RNA_TEs <- function(xplot,
+                                             DNAdat1,
+                                             DNAmutantDat1,
+                                             DNAranDat1,
+                                             DNAmutantRanDat1,
+                                             RNAdat1,
+                                             RNAmutantDat1,
+                                             RNAranDat1,
+                                             RNAmutantRanDat1,
+                                             flankSize, winSize,
+                                             Ylabel1,
+                                             flankLabL, flankLabR,
+                                             startLab1, endLab1,
+                                             startLab2, endLab2,
+                                             legendLoc, legendLabs,
+                                             wtCol, mutantCol) {
+  # target loci
+  plot(xplot, DNAdat1,
+       ylim = c(min(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1),
+                max(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1)),
+       type = "l", lwd = 1.5, col = wtCol, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, DNAmutantDat1, type = "l", lwd = 1.5, col = mutantCol)
+  axis(side = 2, at = pretty(c(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1)))
+  mtext(side = 2, line = 2, cex = 0.8, text = Ylabel1, col = wtCol)
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(wtCol, mutantCol),
+         text.col = c(wtCol, mutantCol),
+         text.font = c(1, 3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+
+  # random loci
+  plot(xplot, DNAranDat1,
+       ylim = c(min(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1),
+                max(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1)),
+       type = "l", lwd = 1.5, col = wtCol, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, DNAmutantRanDat1, type = "l", lwd = 1.5, col = mutantCol)
+  axis(side = 2, at = pretty(c(DNAdat1, DNAranDat1, DNAmutantDat1, DNAmutantRanDat1, RNAdat1, RNAranDat1, RNAmutantDat1, RNAmutantRanDat1)))
+  mtext(side = 2, line = 2, cex = 0.8, text = Ylabel1, col = wtCol)
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(wtCol, mutantCol),
+         text.col = c(wtCol, mutantCol),
+         text.font = c(1, 3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+}
+
+# Function to plot mean coverage profile of one vs another chromatin mark for DNA and RNA TEs on separate Y-axes around target and random loci
+plotAvgCov_oneVanother_DNA_RNA_TEs <- function(xplot,
+                                               DNAdat1,
+                                               DNAranDat1,
+                                               RNAdat1,
+                                               RNAranDat1,
+                                               DNAdat2,
+                                               DNAranDat2,
+                                               RNAdat2,
+                                               RNAranDat2,
+                                               flankSize, winSize,
+                                               Ylabel1, Ylabel2,
+                                               flankLabL, flankLabR,
+                                               startLab1, endLab1,
+                                               startLab2, endLab2,
+                                               dat1Col, dat2Col) {
+  # target loci
+  plot(xplot, DNAdat1,
+       ylim = c(min(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1),
+                max(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1)),
+       type = "l", lwd = 1.5, col = dat1Col, ann = F, xaxt = "n", yaxt = "n")
+  axis(side = 2, at = pretty(c(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1)))
+  mtext(side = 2, line = 2, cex = 0.8, text = Ylabel1, col = dat1Col)
+  par(new = T)
+  plot(xplot, DNAdat2,
+       ylim = c(min(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2),
+                max(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2)),
+       type = "l", lwd = 1.5, col = dat2Col, ann = F, xaxt = "n", yaxt = "n")
+  axis(side = 4, at = pretty(c(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+
+  # random loci
+  plot(xplot, DNAranDat1,
+       ylim = c(min(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1),
+                max(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1)),
+       type = "l", lwd = 1.5, col = dat1Col, ann = F, xaxt = "n", yaxt = "n")
+  axis(side = 2, at = pretty(c(DNAdat1, DNAranDat1, RNAdat1, RNAranDat1)))
+  par(new = T)
+  plot(xplot, DNAranDat2,
+       ylim = c(min(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2),
+                max(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2)),
+       type = "l", lwd = 1.5, col = dat2Col, ann = F, xaxt = "n", yaxt = "n")
+  axis(side = 4, at = pretty(c(DNAdat2, DNAranDat2, RNAdat2, RNAranDat2)))
+  mtext(side = 4, line = 2, cex = 0.8, text = Ylabel2, col = dat2Col)
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+}
+
+# Function to plot mean coverage profile of wt vs mutant chromatin mark on same Y-axes around target and random loci
+plotAvgCov_WTvWTvsWT <- function(xplot,
+                                 dat1,
+                                 dat2,
+                                 dat3,
+                                 ranDat1,
+                                 ranDat2,
+                                 ranDat3,
+                                 flankSize, winSize,
+                                 flankLabL, flankLabR,
+                                 startLab1, endLab1,
+                                 startLab2, endLab2,
+                                 legendLoc, legendLabs,
+                                 col1, col2, col3) {
+  # target loci
+  plot(xplot, dat1,
+       ylim = c(min(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3),
+                max(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, dat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, dat3, type = "l", lwd = 1.5, col = col3)
+  axis(side = 2, at = pretty(c(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(dat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3),
+         text.col = c(col1, col2, col3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+
+  # random loci
+  plot(xplot, ranDat1,
+       ylim = c(min(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3),
+                max(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, ranDat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, ranDat3, type = "l", lwd = 1.5, col = col3)
+  axis(side = 2, at = pretty(c(dat1, dat2, dat3, ranDat1, ranDat2, ranDat3)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3),
+         text.col = c(col1, col2, col3),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+}
+
+# Function to plot mean coverage profile of wt vs mutant chromatin mark on same Y-axes around target and random loci
+plotAvgCov_WTvWTvsWTvsWT <- function(xplot,
+                                     dat1,
+                                     dat2,
+                                     dat3,
+                                     dat4,
+                                     ranDat1,
+                                     ranDat2,
+                                     ranDat3,
+                                     ranDat4,
+                                     flankSize, winSize,
+                                     flankLabL, flankLabR,
+                                     startLab1, endLab1,
+                                     startLab2, endLab2,
+                                     legendLoc, legendLabs,
+                                     col1, col2, col3, col4) {
+  # target loci
+  plot(xplot, dat1,
+       ylim = c(min(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4),
+                max(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, dat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, dat3, type = "l", lwd = 1.5, col = col3)
+  lines(xplot, dat4, type = "l", lwd = 1.5, col = col4)
+  axis(side = 2, at = pretty(c(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(dat1)-(flankSize/winSize), length(dat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(dat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3, col4),
+         text.col = c(col1, col2, col3, col4),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+
+  # random loci
+  plot(xplot, ranDat1,
+       ylim = c(min(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4),
+                max(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, ranDat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, ranDat3, type = "l", lwd = 1.5, col = col3)
+  lines(xplot, ranDat3, type = "l", lwd = 1.5, col = col4)
+  axis(side = 2, at = pretty(c(dat1, dat2, dat3, dat4, ranDat1, ranDat2, ranDat3, ranDat4)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize), length(ranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(ranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3, col4),
+         text.col = c(col1, col2, col3, col4),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+}
+
+# Function to plot mean coverage profile of wt vs mutant chromatin mark for DNA and RNA TEs on same Y-axes around target and random loci
+plotAvgCov_WTvWTvsWTvsWT_DNA_RNA_TEs <- function(xplot,
+                                                 DNAdat1,
+                                                 DNAdat2,
+                                                 DNAdat3,
+                                                 DNAdat4,
+                                                 DNAranDat1,
+                                                 DNAranDat2,
+                                                 DNAranDat3,
+                                                 DNAranDat4,
+                                                 RNAdat1,
+                                                 RNAdat2,
+                                                 RNAdat3,
+                                                 RNAdat4,
+                                                 RNAranDat1,
+                                                 RNAranDat2,
+                                                 RNAranDat3,
+                                                 RNAranDat4,
+                                                 flankSize, winSize,
+                                                 flankLabL, flankLabR,
+                                                 startLab1, endLab1,
+                                                 startLab2, endLab2,
+                                                 legendLoc, legendLabs,
+                                                 col1, col2, col3, col4) {
+  # target loci
+  plot(xplot, DNAdat1,
+       ylim = c(min(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4),
+                max(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, DNAdat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, DNAdat3, type = "l", lwd = 1.5, col = col3)
+  lines(xplot, DNAdat4, type = "l", lwd = 1.5, col = col4)
+  axis(side = 2, at = pretty(c(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize), length(DNAdat1)), text = c(flankLabL, startLab1, endLab1, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAdat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3, col4),
+         text.col = c(col1, col2, col3, col4),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+
+  # random loci
+  plot(xplot, DNAranDat1,
+       ylim = c(min(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4),
+                max(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4)),
+       type = "l", lwd = 1.5, col = col1, ann = F, xaxt = "n", yaxt = "n")
+  lines(xplot, DNAranDat2, type = "l", lwd = 1.5, col = col2)
+  lines(xplot, DNAranDat3, type = "l", lwd = 1.5, col = col3)
+  lines(xplot, DNAranDat3, type = "l", lwd = 1.5, col = col4)
+  axis(side = 2, at = pretty(c(DNAdat1, DNAdat2, DNAdat3, DNAdat4, DNAranDat1, DNAranDat2, DNAranDat3, DNAranDat4, RNAdat1, RNAdat2, RNAdat3, RNAdat4, RNAranDat1, RNAranDat2, RNAranDat3, RNAranDat4)))
+  axis(side = 1, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), labels = c("", "", "", ""))
+  mtext(side = 1, line = 1, cex = 0.7, at = c(1, (flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize), length(DNAranDat1)), text = c(flankLabL, startLab2, endLab2, flankLabR))
+  abline(v = c((flankSize/winSize)+1, length(DNAranDat1)-(flankSize/winSize)), lty = 3)
+  box(lwd = 1.5)
+  legend(legendLoc,
+         legend = legendLabs,
+         col = c(col1, col2, col3, col4),
+         text.col = c(col1, col2, col3, col4),
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
+}
+
+
 # Function to plot mean coverage profile of one chromatin mark (in both wt and mutant on same Y-axes) vs another (in wt only) around target and random loci
 plotAvgCov_oneWTmutantVanotherWT <- function(xplot,
                                              dat1, dat2,
