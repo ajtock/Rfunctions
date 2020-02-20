@@ -17,6 +17,7 @@ baseRelativeFreqUnstranded <- function(targets, genome, mask, flankSize, locSize
   if(length(maskTargetOverlaps) > 0) {
     targets <- targets[-subjectHits(maskTargetOverlaps)]
   }
+  set.seed(374592)
   ranLoc <- randomizeRegions(targets, genome = genome, mask = mask, per.chromosome = TRUE, allow.overlaps = TRUE)
   a.coords.targetPlus <- rep(0, times = locSize)
   t.coords.targetPlus <- rep(0, times = locSize)

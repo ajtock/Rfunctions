@@ -39,39 +39,61 @@ mergeBaseFreqPlot <- function(at.coords, gc.coords, at.ran.coords, gc.ran.coords
 mergeBaseFreqPlotDiffY <- function(at.coords, gc.coords, at.ran.coords, gc.ran.coords, flankSize, flankLabL, flankLabR, midpointLab1, midpointLab2, mycols, xplot, mainTitle1, mainTitle2) {
   # targets
   plot(xplot, at.coords, col = mycols[2], lwd = 1.5, type = "l",
-       ylim = c(min(at.coords, at.ran.coords),
-                max(at.coords, at.ran.coords)),
-       ann = F, xaxt = "n", yaxt = "n")
-  axis(side = 2, at = pretty(c(at.coords, at.ran.coords)))
+       ylim = c(0.630, 0.665),
+#       ylim = c(min(at.coords, at.ran.coords),
+#                max(at.coords, at.ran.coords)),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n",
+       main = mainTitle1,
+       cex.main = 1.25)
+#  axis(side = 2, at = pretty(c(at.coords, at.ran.coords)))
+  axis(side = 2, cex.axis = 1, lwd.tick = 1.5)
   mtext(side = 2, line = 2, cex = 0.8, text = "A+T relative frequency", col = mycols[2])
   par(new = T)
   plot(xplot, gc.coords, col = mycols[1], lwd = 1.5, type = "l",
-       ylim = c(min(gc.coords, gc.ran.coords),
-                max(gc.coords, gc.ran.coords)),
+       ylim = c(0.335, 0.370),
+#       ylim = c(min(gc.coords, gc.ran.coords),
+#                max(gc.coords, gc.ran.coords)),
        ann = F, xaxt = "n", yaxt = "n")
-  axis(side = 4, at = pretty(c(gc.coords, gc.ran.coords)))
-  axis(side = 1, at = c(-flankSize, 0, flankSize), labels = c(flankLabL, midpointLab1, flankLabR))
-  abline(v = 0, lty = 3)
+#  axis(side = 4, at = pretty(c(gc.coords, gc.ran.coords)))
+  axis(side = 4, cex.axis = 1, lwd.tick = 1.5)
+  axis(side = 1, cex.axis = 1, lwd.tick = 1.5,
+       at = c(-flankSize, 0, flankSize),
+       labels = c("", "", ""))
+  mtext(side = 1, line = 0.75, cex = 0.9,
+        at = c(-flankSize, 0, flankSize),
+        text = c(flankLabL, "Midpoint", flankLabR))
+  abline(v = 0, lty = 3, lwd = 3)
   box(lwd = 1.5)
-  mtext(side = 3, line = 0.5, cex = 0.8, text = mainTitle1)
 
   # ranLoc
   plot(xplot, at.ran.coords, col = mycols[2], lwd = 1.5, type = "l",
-       ylim = c(min(at.coords, at.ran.coords),
-                max(at.coords, at.ran.coords)),
-       ann = F, xaxt = "n", yaxt = "n")
-  axis(side = 2, at = pretty(c(at.coords, at.ran.coords)))
+       ylim = c(0.630, 0.665),
+#       ylim = c(min(at.coords, at.ran.coords),
+#                max(at.coords, at.ran.coords)),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n",
+       main = mainTitle2,
+       cex.main = 1.25)
+#  axis(side = 2, at = pretty(c(at.coords, at.ran.coords)))
+  axis(side = 2, cex.axis = 1, lwd.tick = 1.5)
   par(new = T)
   plot(xplot, gc.ran.coords, col = mycols[1], lwd = 1.5, type = "l",
-       ylim = c(min(gc.coords, gc.ran.coords),
-                max(gc.coords, gc.ran.coords)),
+       ylim = c(0.335, 0.370),
+#       ylim = c(min(gc.coords, gc.ran.coords),
+#                max(gc.coords, gc.ran.coords)),
        ann = F, xaxt = "n", yaxt = "n")
-  axis(side = 4, at = pretty(c(gc.coords, gc.ran.coords)))
-  axis(side = 1, at = c(-flankSize, 0, flankSize), labels = c(flankLabL, midpointLab2, flankLabR))
+#  axis(side = 4, at = pretty(c(gc.coords, gc.ran.coords)))
+  axis(side = 4, cex.axis = 1, lwd.tick = 1.5)
   mtext(side = 4, line = 2, cex = 0.8, text = "G+C relative frequency", col = mycols[1])
-  abline(v = 0, lty = 3)
+  axis(side = 1, cex.axis = 1, lwd.tick = 1.5,
+       at = c(-flankSize, 0, flankSize),
+       labels = c("", "", ""))
+  mtext(side = 1, line = 0.75, cex = 0.9,
+        at = c(-flankSize, 0, flankSize),
+        text = c(flankLabL, "Midpoint", flankLabR))
+  abline(v = 0, lty = 3, lwd = 3)
   box(lwd = 1.5)
-  mtext(side = 3, line = 0.5, cex = 0.8, text = mainTitle2)
 }
 
 # Function to plot summed A+T OR G+C relative frequencies around target and random loci 
@@ -159,7 +181,7 @@ baseFreqPlotDiffY <- function(coords, ran.coords, flankSize, flankLabL, flankLab
        ann = F, xaxt = "n", yaxt = "n")
   lines(xplot, coords[[2]], col = mycols[2], lwd = 1.5)
   axis(side = 2, at = pretty(c(coords[[1]], coords[[2]], ran.coords[[1]], ran.coords[[2]])))
-  mtext(side = 2, line = 2, cex = 0.8, text = "A or T relative frequency", col = "blue")
+  mtext(side = 2, line = 2, cex = 0.8, text = "A or T relative frequency", col = mycols[1])
   par(new = T)
   plot(xplot, coords[[3]], col = mycols[3], lwd = 1.5, type = "l",
        ylim = c(min(coords[[3]], coords[[4]], ran.coords[[3]], ran.coords[[4]]),
@@ -192,7 +214,7 @@ baseFreqPlotDiffY <- function(coords, ran.coords, flankSize, flankLabL, flankLab
   lines(xplot, ran.coords[[4]], col = mycols[4], lwd = 1.5)
   axis(side = 4, at = pretty(c(coords[[3]], coords[[4]], ran.coords[[3]], ran.coords[[4]])))
   axis(side = 1, at = c(-flankSize, 0, flankSize), labels = c(flankLabL, midpointLab2, flankLabR))
-  mtext(side = 4, line = 2, cex = 0.8, text = "G or C relative frequency", col = "red")
+  mtext(side = 4, line = 2, cex = 0.8, text = "G or C relative frequency", col = mycols[3])
   abline(v = 0, lty = 3)
   legend("right",
          legend = c("A", "T", "G", "C"),
