@@ -253,17 +253,17 @@ chrPartitionPlotCov2_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", height = 4.3)
+          col = "midnightblue", height = 0.62)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", height = 4.3)
+          col = "turquoise3", height = 0.62)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", height = 4.3)
+          col = "lemonchiffon", height = 0.62)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
   box(lwd = 1.5)
@@ -286,7 +286,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xaxt = "n", yaxt = "n",
        main = bquote(.(title)),
        cex.main = 2.5)
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A)
+  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
   par(new = T, mgp = c(3, 1, 0))
   plot(xplot1, dat1B, col = col1B, type = "h", lwd = 1.0,
@@ -310,7 +310,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
 #  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A)
+  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
   par(new = T, mgp = c(3, 1.5, 0))
   plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
        ylim = c(min2B,
@@ -331,17 +331,17 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", height = 4.3)
+          col = "midnightblue", height = 0.62)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", height = 4.3)
+          col = "turquoise3", height = 0.62)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", height = 4.3)
+          col = "lemonchiffon", height = 0.62)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
   box(lwd = 1.5)
@@ -365,7 +365,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xaxt = "n", yaxt = "n",
        main = bquote(.(title)),
        cex.main = 2.5)
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A)
+  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
   par(new = T, mgp = c(3, 1, 0))
   plot(xplot1, dat1B, col = col1B, type = "h", lwd = 1.0,
@@ -389,7 +389,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
 #  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A)
+  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
   par(new = T, mgp = c(3, 1.5, 0))
   plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
        ylim = c(min2B,
