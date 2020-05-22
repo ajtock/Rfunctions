@@ -14,7 +14,7 @@ chrPlotCov <- function(xplot, title, cenStart, cenEnd,
   axis(side = 2, cex.axis = 1.5, lwd.tick = 1.5)
   axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 0.75, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage (type = "h")
@@ -31,7 +31,7 @@ chrPlotFeatureFreq <- function(xplot, title, cenStart, cenEnd,
   axis(side = 2, cex.axis = 1.5, lwd.tick = 1.5)
   axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 0.75, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage (type = "h")
@@ -64,7 +64,7 @@ chrPlotCovFeatureFreq <- function(xplot, title, cenStart, cenEnd,
   axis(side = 4, cex.axis = 1.5, lwd.tick = 1.5)
   axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 0.75, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 ## Function to plot chromosome profiles of coverage (type = "h")
@@ -103,7 +103,7 @@ chrPlotCovFeatureFreq <- function(xplot, title, cenStart, cenEnd,
 #  text(p[2], mean(p[3:4]), cex = 2.3, adj = c(0.5, -1.8), labels = Ylab2, xpd = NA, srt = -90, col = col2)
 #  axis(side = 4, cex.axis = 1.5, lwd.tick = 1.5)
 #  abline(v = c(cenStart, cenEnd), lty = 5, lwd = 0.75, col = "black")
-#  box(lwd = 1.5)
+#  box(lwd = 2.0)
 #}
 
 # Function to plot profile for one chromosome of one dataset (type = "h")
@@ -158,7 +158,7 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
           col = "lemonchiffon", height = 0.4)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 #chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, rug1Col, 
 #                                         xplot1, dat1A, col1A, Ylab1, min1, max1, legendLoc, legendLabs,
@@ -209,7 +209,7 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
 #          col = "lemonchiffon", height = 0.4)
 #  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
 #  abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
-#  box(lwd = 1.5)
+#  box(lwd = 2.0)
 #}
 
 # Function to plot profile for one chromosome of two datasets (type = "h")
@@ -266,7 +266,7 @@ chrPartitionPlotCov2_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
           col = "lemonchiffon", height = 0.62)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot profile for one chromosome of two log2(ChIP/input) datasets (type = "h")
@@ -286,7 +286,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xaxt = "n", yaxt = "n",
        main = bquote(.(title)),
        cex.main = 2.5)
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
   par(new = T, mgp = c(3, 1, 0))
   plot(xplot1, dat1B, col = col1B, type = "h", lwd = 1.0,
@@ -295,10 +295,10 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1B, col.axis = col1B, line = 3.0)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1B, col.axis = col1B, line = 3.0)
   mtext(side = 2, line = 5.5, cex = 2.0, text = Ylab1, col = "black")
   par(mgp = c(3, 1.25, 0))
-  axis(side = 1, cex.axis = 2.0, lwd.tick = 2.0,
+  axis(side = 1, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0,
        labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
        at = seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*1e+08)
   mtext(side = 1, line = 3.5, cex = 2.0, text = "Coordinates (Mb)", col = "black")
@@ -310,7 +310,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
 #  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
   par(new = T, mgp = c(3, 1.5, 0))
   plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
        ylim = c(min2B,
@@ -318,7 +318,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
   p <- par('usr')
   text(p[2], mean(p[3:4]), cex = 3.0, adj = c(0.5, -3.5), labels = Ylab2, xpd = NA, srt = -90, col = "black")
   legend(legendLoc,
@@ -344,7 +344,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
           col = "lemonchiffon", height = 0.62)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot profile for one chromosome of two datasets (e.g., MNase and mCG; type = "h")
@@ -365,7 +365,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xaxt = "n", yaxt = "n",
        main = bquote(.(title)),
        cex.main = 2.5)
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
   par(new = T, mgp = c(3, 1, 0))
   plot(xplot1, dat1B, col = col1B, type = "h", lwd = 1.0,
@@ -374,10 +374,10 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
-  axis(side = 2, cex.axis = 2.0, lwd.tick = 2.0, col = col1B, col.axis = col1B, line = 3.0)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1B, col.axis = col1B, line = 3.0)
   mtext(side = 2, line = 5.5, cex = 2.0, text = Ylab1, col = "black")
   par(mgp = c(3, 1.25, 0))
-  axis(side = 1, cex.axis = 2.0, lwd.tick = 2.0,
+  axis(side = 1, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0,
        labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
        at = seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*1e+08)
   mtext(side = 1, line = 3.5, cex = 2.0, text = "Coordinates (Mb)", col = "black")
@@ -389,7 +389,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
 #  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
   par(new = T, mgp = c(3, 1.5, 0))
   plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
        ylim = c(min2B,
@@ -397,7 +397,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n")
-  axis(side = 4, cex.axis = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
   p <- par('usr')
   text(p[2], mean(p[3:4]), cex = 3.0, adj = c(0.5, -3.5), labels = Ylab2, xpd = NA, srt = -90, col = "black")
   legend(legendLoc,
@@ -423,7 +423,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
           col = "lemonchiffon", ybottom = 213)
 #  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage of one dataset (type = "h")
@@ -464,7 +464,7 @@ chrPlotCov1_feature <- function(title, cenStart, cenEnd, R1End, R3Start, rug1, r
   rug(x = rug1, ticksize = 0.03, side = 1, lwd = 0.75, col = rug1Col)
   rug(x = rug2, ticksize = 0.03, side = 3, lwd = 0.75, col = rug2Col)
   rug(x = rug3, ticksize = 0.03, side = 3, lwd = 0.75, col = rug3Col)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage of one dataset (type = "h")
@@ -511,7 +511,7 @@ chrPlotCov1_featureQuantiles <- function(title, cenStart, cenEnd, R1End, R3Start
          text.col = c(col2),
          text.font = c(1),
          ncol = 1, cex = 1.5, lwd = 2, bty = "n")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage of two datasets (type = "h")
@@ -560,7 +560,7 @@ chrPlotCov2_feature <- function(title, cenStart, cenEnd, R1End, R3Start, rug1, r
   rug(x = rug1, ticksize = 0.03, side = 1, lwd = 0.75, col = rug1Col)
   rug(x = rug2, ticksize = 0.03, side = 3, lwd = 0.75, col = rug2Col)
   rug(x = rug3, ticksize = 0.03, side = 3, lwd = 0.75, col = rug3Col)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot chromosome profiles of coverage of 6 datasets (type = "h")
@@ -596,7 +596,7 @@ chrPlotCov6 <- function(title, cenStart, cenEnd,
          ncol = 1, cex = 2.0, lwd = 1.5, bty = "n")
   axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 0.75, col = "black")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot mean coverage profile of one chromatin mark around feature and random loci
@@ -630,7 +630,7 @@ plotAvgCov <- function(xplot,
                length(dat1)))
   abline(v = c((flankSize/binSize)+1,
                length(dat1)-(flankSize/binSize)), lty = 3, lwd = 2)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 
   # Random loci
   plot(xplot, ranDat1,
@@ -656,7 +656,7 @@ plotAvgCov <- function(xplot,
                length(ranDat1)))
   abline(v = c((flankSize/binSize)+1,
                length(ranDat1)-(flankSize/binSize)), lty = 3, lwd = 2)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot mean coverage profile of one chromatin mark around feature and random loci
@@ -689,7 +689,7 @@ plotAvgCovYlim <- function(xplot,
                length(dat1)))
   abline(v = c((flankSize/binSize)+1,
                length(dat1)-(flankSize/binSize)), lty = 3, lwd = 2)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 
   # Random loci
   plot(xplot, ranDat1,
@@ -714,7 +714,7 @@ plotAvgCovYlim <- function(xplot,
                length(ranDat1)))
   abline(v = c((flankSize/binSize)+1,
                length(ranDat1)-(flankSize/binSize)), lty = 3, lwd = 2)
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
 
 # Function to plot mean coverage profile of one chromatin mark around genes in dominant, suppressed and balanced triads
@@ -765,5 +765,5 @@ plotAvgCovDomSupBal <- function(xplot,
          text.col = colours,
          text.font = c(1),
          ncol = 1, cex = 0.65, lwd = 1.5, bty = "n")
-  box(lwd = 1.5)
+  box(lwd = 2.0)
 }
