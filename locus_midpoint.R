@@ -39,7 +39,8 @@ locMidpointFlank2bp <- function (x, ...)
     x
 }
 
-## and to include 500 flanking bases (midpoint-1 bp, midpoint, midpoint+1bp)
+## Function to determine rounded midpoints of GRanges loci
+## and to include flanking bases (midpoint-leftFlank bases, midpoint, midpoint+rightFlank bases)
 locMidpointFlank <- function (x, leftFlank, rightFlank, ...)
 {
     if (any(strand(x) == "*"))

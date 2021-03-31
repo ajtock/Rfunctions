@@ -118,7 +118,7 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n",
-       main = bquote(.(title)),
+       main = bquote(.(title)), font.main = 1,
        cex.main = 2.5)
   axis(side = 1, cex.axis = 2.0, lwd.tick = 1.5,
        labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
@@ -145,17 +145,17 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", height = 0.4)
+          col = "midnightblue", height = 6.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", height = 0.4)
+          col = "turquoise3", height = 6.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", height = 0.4)
+          col = "lemonchiffon", height = 6.0)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
   box(lwd = 2.0)
@@ -169,7 +169,7 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
 #       xlim = c(0, max(chrLens[chrx])),
 #       xlab = "", ylab = "",
 #       xaxt = "n", yaxt = "n",
-#       main = bquote(.(title)),
+#       main = bquote(.(title)), font.main = 1,
 #       cex.main = 2.5)
 #  axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5,
 #       labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
@@ -196,17 +196,17 @@ chrPartitionPlotCov1_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
 #  xblocks(x = xplot1,
 #          y = (xplot1 < chrPartitions[x,2] |
 #               xplot1 > chrPartitions[x,5]),
-#          col = "midnightblue", height = 0.4)
+#          col = "midnightblue", height = 6.0)
 #  xblocks(x = xplot1,
 #          y = (xplot1 >= chrPartitions[x,2] &
 #               xplot1 < chrPartitions[x,3]) |
 #              (xplot1 > chrPartitions[x,4] &
 #               xplot1 <= chrPartitions[x,5]),
-#          col = "turquoise3", height = 0.4)
+#          col = "turquoise3", height = 6.0)
 #  xblocks(x = xplot1,
 #          y = (xplot1 >= chrPartitions[x,3] &
 #               xplot1 <= chrPartitions[x,4]),
-#          col = "lemonchiffon", height = 0.4)
+#          col = "lemonchiffon", height = 6.0)
 #  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
 #  abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
 #  box(lwd = 2.0)
@@ -225,7 +225,7 @@ chrPartitionPlotCov2_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n",
-       main = bquote(.(title)),
+       main = bquote(.(title)), font.main = 1,
        cex.main = 2.5)
   lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
   axis(side = 1, cex.axis = 2.0, lwd.tick = 1.5,
@@ -253,19 +253,160 @@ chrPartitionPlotCov2_feature <- function(chrx, title, cenStart, cenEnd, rug1, ru
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", height = 0.62)
+          col = "midnightblue", height = 6.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", height = 0.62)
+          col = "turquoise3", height = 6.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", height = 0.62)
+          col = "lemonchiffon", height = 6.0)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
+  box(lwd = 2.0)
+}
+
+# Function to plot profile for one chromosome of 3 ChIP or input CPM datasets (type = "l")
+# overlaid with feature frequency for two sets of features (type = "l")
+chrPartitionPlotCov3l_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, rug1Col, 
+                                           xplot1, dat1A, col1A, Ylab1, min1, max1,
+                                           dat1B, col1B, dat1C, col1C,
+                                           legendLoc, legendLabs,
+                                           xplot2, dat2A, col2A, Ylab2, min2A, max2A, min2B, max2B,
+                                           dat2B, col2B) {
+  par(mgp = c(3, 1, 0))
+  plot(xplot1, dat1A, col = col1A, type = "l", lwd = 2,
+       ylim = c(min1,
+                max1),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n",
+       main = bquote(.(title)), font.main = 1,
+       cex.main = 2.5)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = "black", col.axis = "black", line = 0.2)
+  lines(xplot1, dat1B, col = col1B, type = "l", lwd = 2)
+  lines(xplot1, dat1C, col = col1C, type = "l", lwd = 2)
+  mtext(side = 2, line = 2.5, cex = 2.0, text = Ylab1, col = "black")
+  par(mgp = c(3, 1.25, 0))
+  axis(side = 1, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0,
+       labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
+       at = seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*1e+08)
+  mtext(side = 1, line = 3.5, cex = 2.0, text = "Coordinates (Mb)", col = "black")
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2A, col = col2A, type = "l", lwd = 2,
+       ylim = c(min2A,
+                max2A),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+#  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
+       ylim = c(min2B,
+                max2B),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
+  p <- par('usr')
+  text(p[2], mean(p[3:4]), cex = 3.0, adj = c(0.5, -3.5), labels = Ylab2, xpd = NA, srt = -90, col = "black")
+  legend(legendLoc,
+         inset = c(0.35, 0.08),
+         legend = legendLabs,
+         col = c("white"),
+         text.col = c(col1A, col1B, col1C, col2A, col2B),
+         text.font = c(1, 1, 1, 1),
+         ncol = 1, cex = 1.25, lwd = 1.5, bty = "n")
+  xblocks(x = xplot1,
+          y = (xplot1 < chrPartitions[x,2] |
+               xplot1 > chrPartitions[x,5]),
+          col = "midnightblue", ybottom = 320)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,2] &
+               xplot1 < chrPartitions[x,3]) |
+              (xplot1 > chrPartitions[x,4] &
+               xplot1 <= chrPartitions[x,5]),
+          col = "turquoise3", ybottom = 320)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,3] &
+               xplot1 <= chrPartitions[x,4]),
+          col = "lemonchiffon", ybottom = 320)
+  rug(x = rug1, ticksize = 0.03, side = 1, lwd = 0.75, col = rug1Col)
+  abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
+  box(lwd = 2.0)
+}
+
+# Function to plot profile for one chromosome of 2 log2(ChIP/input) datasets (type = "l")
+# overlaid with feature frequency for two sets of features (type = "l")
+chrPartitionPlotCov2l_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, rug1Col, 
+                                           xplot1, dat1A, col1A, Ylab1, min1, max1,
+                                           dat1B, col1B,
+                                           legendLoc, legendLabs,
+                                           xplot2, dat2A, col2A, Ylab2, min2A, max2A, min2B, max2B,
+                                           dat2B, col2B) {
+  par(mgp = c(3, 1, 0))
+  plot(xplot1, dat1A, col = col1A, type = "l", lwd = 2,
+       ylim = c(min1,
+                max1),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n",
+       main = bquote(.(title)), font.main = 1,
+       cex.main = 2.5)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = "black", col.axis = "black", line = 0.2)
+  lines(xplot1, dat1B, col = col1B, type = "l", lwd = 2)
+  mtext(side = 2, line = 2.5, cex = 2.0, text = Ylab1, col = "black")
+  par(mgp = c(3, 1.25, 0))
+  axis(side = 1, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0,
+       labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
+       at = seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*1e+08)
+  mtext(side = 1, line = 3.5, cex = 2.0, text = "Coordinates (Mb)", col = "black")
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2A, col = col2A, type = "l", lwd = 2,
+       ylim = c(min2A,
+                max2A),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+#  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2B, col = col2B, type = "l", lwd = 2,
+       ylim = c(min2B,
+                max2B),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2B, col.axis = col2B, line = 3.0)
+  p <- par('usr')
+  text(p[2], mean(p[3:4]), cex = 3.0, adj = c(0.5, -3.5), labels = Ylab2, xpd = NA, srt = -90, col = "black")
+  legend(legendLoc,
+         inset = c(0.35, 0.08),
+         legend = legendLabs,
+         col = c("white"),
+         text.col = c(col1A, col1B, col2A, col2B),
+         text.font = c(1, 1, 1, 1),
+         ncol = 1, cex = 1.25, lwd = 1.5, bty = "n")
+  xblocks(x = xplot1,
+          y = (xplot1 < chrPartitions[x,2] |
+               xplot1 > chrPartitions[x,5]),
+          col = "midnightblue", height = 46.0)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,2] &
+               xplot1 < chrPartitions[x,3]) |
+              (xplot1 > chrPartitions[x,4] &
+               xplot1 <= chrPartitions[x,5]),
+          col = "turquoise3", height = 46.0)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,3] &
+               xplot1 <= chrPartitions[x,4]),
+          col = "lemonchiffon", height = 46.0)
+  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
+  abline(v = c(cenStart, cenEnd), h = 0, lty = 5, lwd = 1, col = "black")
   box(lwd = 2.0)
 }
 
@@ -284,7 +425,7 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n",
-       main = bquote(.(title)),
+       main = bquote(.(title)), font.main = 1,
        cex.main = 2.5)
   axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
@@ -331,17 +472,17 @@ chrPartitionPlotCov2_feature2 <- function(chrx, title, cenStart, cenEnd, rug1, r
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", height = 0.62)
+          col = "midnightblue", height = 14.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", height = 0.62)
+          col = "turquoise3", height = 14.0)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", height = 0.62)
+          col = "lemonchiffon", height = 14.0)
   rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
   box(lwd = 2.0)
@@ -363,7 +504,7 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
        xlim = c(0, max(chrLens[chrx])),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n",
-       main = bquote(.(title)),
+       main = bquote(.(title)), font.main = 1,
        cex.main = 2.5)
   axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
 #  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
@@ -410,18 +551,99 @@ chrPartitionPlotCovMeth_feature2 <- function(chrx, title, cenStart, cenEnd,
   xblocks(x = xplot1,
           y = (xplot1 < chrPartitions[x,2] |
                xplot1 > chrPartitions[x,5]),
-          col = "midnightblue", ybottom = 213)
+          col = "midnightblue", ybottom = 200)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,2] &
                xplot1 < chrPartitions[x,3]) |
               (xplot1 > chrPartitions[x,4] &
                xplot1 <= chrPartitions[x,5]),
-          col = "turquoise3", ybottom = 213)
+          col = "turquoise3", ybottom = 200)
   xblocks(x = xplot1,
           y = (xplot1 >= chrPartitions[x,3] &
                xplot1 <= chrPartitions[x,4]),
-          col = "lemonchiffon", ybottom = 213)
+          col = "lemonchiffon", ybottom = 200)
 #  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
+  abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
+  box(lwd = 2.0)
+}
+
+# Function to plot profile for one chromosome of two log2(ChIP/input) datasets (type = "h")
+# overlaid with feature frequency for two sets of features (type = "l")
+chrPartitionPlotCov2_featureQuantiles <- function(chrx, title, cenStart, cenEnd, rug1, rug1Col, 
+                                                  xplot1, dat1A, col1A, Ylab1, min1A, max1A, min1B, max1B,
+                                                  dat1B, col1B,
+                                                  legendLoc, legendLabs,
+                                                  xplot2, dat2A, col2A, Ylab2, min2A, max2A, min2B, max2B,
+                                                  dat2B, col2B) {
+  par(mgp = c(3, 1, 0))
+  plot(xplot1, dat1A, col = col1A, type = "h", lwd = 1.0,
+       ylim = c(min1A,
+                max1A),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n",
+       main = bquote(.(title)), font.main = 1,
+       cex.main = 2.5)
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1A, col.axis = col1A, line = 0.2)
+#  lines(xplot1, dat1B, col = col1B, type = "h", lwd = 0.5)
+  par(new = T, mgp = c(3, 1, 0))
+  plot(xplot1, dat1B, col = col1B, type = "h", lwd = 1.0,
+       ylim = c(min1B,
+                max1B),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+  axis(side = 2, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col1B, col.axis = col1B, line = 3.0)
+  mtext(side = 2, line = 5.5, cex = 2.0, text = Ylab1, col = "black")
+  par(mgp = c(3, 1.25, 0))
+  axis(side = 1, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0,
+       labels = as.character(seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*100),
+       at = seq(0, round(max(chrLens[chrx])/1e+08), by = 2)*1e+08)
+  mtext(side = 1, line = 3.5, cex = 2.0, text = "Coordinates (Mb)", col = "black")
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2A, col = col2A, type = "l", lwd = 2,
+       ylim = c(min2A,
+                max2A),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+#  lines(xplot2, dat2B, col = col2B, type = "l", lwd = 2)
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = col2A, col.axis = col2A, line = 0.2)
+  par(new = T, mgp = c(3, 1.5, 0))
+  plot(xplot2, dat2B[,3], col = col2B[1], type = "l", lwd = 2,
+       ylim = c(min2B,
+                max2B),
+       xlim = c(0, max(chrLens[chrx])),
+       xlab = "", ylab = "",
+       xaxt = "n", yaxt = "n")
+  axis(side = 4, cex.axis = 2.0, lwd = 2.0, lwd.tick = 2.0, col = "black", col.axis = "black", line = 3.0)
+  p <- par('usr')
+  text(p[2], mean(p[3:4]), cex = 3.0, adj = c(0.5, -3.5), labels = Ylab2, xpd = NA, srt = -90, col = "black")
+  lines(xplot2, dat2B[,4], col = col2B[2], type = "l", lwd = 2.0)
+  lines(xplot2, dat2B[,5], col = col2B[3], type = "l", lwd = 2.0)
+  lines(xplot2, dat2B[,6], col = col2B[4], type = "l", lwd = 2.0)
+  legend(legendLoc,
+         inset = c(0.15, 0.08),
+         legend = legendLabs,
+         col = c("white"),
+         text.col = c(col2B, col1A, col1B, col2A),
+         text.font = c(1, 1, 1, 1),
+         ncol = 2, cex = 1.25, lwd = 1.5, bty = "n")
+  xblocks(x = xplot1,
+          y = (xplot1 < chrPartitions[x,2] |
+               xplot1 > chrPartitions[x,5]),
+          col = "midnightblue", height = 0.16)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,2] &
+               xplot1 < chrPartitions[x,3]) |
+              (xplot1 > chrPartitions[x,4] &
+               xplot1 <= chrPartitions[x,5]),
+          col = "turquoise3", height = 0.16)
+  xblocks(x = xplot1,
+          y = (xplot1 >= chrPartitions[x,3] &
+               xplot1 <= chrPartitions[x,4]),
+          col = "lemonchiffon", height = 0.16)
+  rug(x = rug1, ticksize = 0.03, side = 3, lwd = 0.75, col = rug1Col)
   abline(v = c(cenStart, cenEnd), lty = 5, lwd = 1, col = "black")
   box(lwd = 2.0)
 }
@@ -480,7 +702,7 @@ chrPlotCov1_featureQuantiles <- function(title, cenStart, cenEnd, R1End, R3Start
        xlim = c(0, max(chrLens)),
        xlab = "", ylab = "",
        xaxt = "n", yaxt = "n",
-       main = bquote(.(title)),
+       main = bquote(.(title)), font.main = 1,
        cex.main = 2)
   axis(side = 1, cex.axis = 1.5, lwd.tick = 1.5,
        labels = c("0", "200", "400", "600", "800"),

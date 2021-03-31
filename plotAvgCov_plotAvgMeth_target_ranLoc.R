@@ -153,7 +153,7 @@ plotAvgCovMidpoint_1v2_oneY_Ylim <- function(featureTitle,
          col = c(col1, col2),
          text.col = c(col1, col2),
          text.font = c(1, 1),
-         ncol = 1, cex = 0.94, lwd = 1.5, bty = "n")
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
   box(lwd = 1.5)
 
   # random loci
@@ -182,7 +182,7 @@ plotAvgCovMidpoint_1v2_oneY_Ylim <- function(featureTitle,
          col = c(col1, col2),
          text.col = c(col1, col2),
          text.font = c(1, 1),
-         ncol = 1, cex = 0.94, lwd = 1.5, bty = "n")
+         ncol = 1, cex = 0.7, lwd = 1.5, bty = "n")
   box(lwd = 1.5)
 }
 
